@@ -6,7 +6,8 @@ import Update from './Update'
 function Task() {
   const {_id}= useParams();
   const [tasks,setTasks]=useState([]);
-  const [info,setInfo]=useState({})  
+  const [info,setInfo]=useState({})
+  const [itemId,setItemId]=useState('')  
 
   useEffect(()=>{
     const loadData =async()=>{
@@ -19,12 +20,17 @@ function Task() {
     }
     loadData();
   },[])
+  const refData =(val)=>{
+    setItemId(val._id)
+    console.log(val._id)
+  }
   const items = tasks.map((e)=>{
     return(
       <div key={e._id}>
         id:{e._id}
         description:{e.taskDes } 
         Status:{e.Status }
+        <button onClick={()=>{refData(e)}}>Reference</button>
       </div>
     )
   })
@@ -32,7 +38,7 @@ function Task() {
   return (
     <div>{info.title}
     {items}
-    <Update itemId={_id}/></div>
+    <Update selectedId={itemId}/></div>
   )
 }
 

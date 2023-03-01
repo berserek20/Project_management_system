@@ -1,7 +1,7 @@
 import React,{ useState,useRef } from 'react'
 import axios from 'axios'
 
-const Update = ({itemId})=>{
+const Update = ({selectedId})=>{
     const [item,setItem]=useState("");
     const [status,setStatus]=useState(false);
     const [title,setTitle]=useState("")
@@ -16,8 +16,7 @@ const Update = ({itemId})=>{
     const UpdateValue=()=>{
         console.log(status)
         axios.put('http://localhost:3001/user',{
-            id:itemId,
-            title:title,
+            id:selectedId,
             taskDes:item,
             Status: status
         })
@@ -34,13 +33,13 @@ const Update = ({itemId})=>{
             {/* {update request} */}
                 <form onSubmit={UpdateValue}>
                    
-                <input 
+                {/* <input 
                     type="text"
                     name="title-entry"
                     value={title}    
                     placeholder="Title Entry"
                     ref={inputRef}         
-                    onChange={(e)=>setTitle(e.target.value)}/>
+                    onChange={(e)=>setTitle(e.target.value)}/> */}
 
                     <input 
                     type="text"
@@ -59,7 +58,7 @@ const Update = ({itemId})=>{
                     onChange={(e)=>setStatus(e.target.value)}/>
 
 
-                    <button type="submit">Add Item</button>
+                    <button type="submit">Update Item</button>
                 </form>
                 
             </div>

@@ -19,11 +19,23 @@ router.get('/',async(req,res)=>{
 
     
     router.put('/',(req,res)=>{
-        const id=new mongodb.ObjectId(req.body.id)
-        console.log(id)
-        todo.findByIdAndUpdate({_id: id},req.body).then((err)=>{
-            console.log(err)
-        })
+        // const id=new mongodb.ObjectId(req.body.id)
+        // console.log(`PUT ID ${id}`)
+        console.log(req.body)
+
+        const documentId = req.body.document_id;
+        const objectId = req.body.id;
+        // const newName = 'new_name';
+
+        todo.updateOne(
+        { "_id": documentId, "array._id": objectId },
+        { "$set": { "array.$.taskDes": req.body.taskDes},
+            "$set": { "array.$.Status": req.body.Status} }
+        )
+
+        // todo.findByIdAndUpdate({_id: id},req.body).then((err)=>{
+        //     console.log(err)
+        // })
         res.send({data:"tell me what to update"})
     });
 
