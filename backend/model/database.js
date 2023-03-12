@@ -1,12 +1,8 @@
 const dotenv=require('dotenv')
 const mongoose = require('mongoose')
 dotenv.config();
-const url = process.env.dbConnect;
+const url = process.env.dbConnectTodo;
 
-const mongdb = ()=>{
-    mongoose.connect(url).then(()=>{
-        console.log("database is connected")
-    }).catch(err=>console.log(err));
-}
-
-module.exports={mongdb}
+    module.exports.authdb=mongoose.createConnection(url);
+    module.exports.todo=mongoose.createConnection(url);
+    

@@ -1,23 +1,25 @@
 const express = require('express')
 const app = express();
-const mongodb = require('mongodb')
+const mongodb = require('mongodb');
+const cookies= require('cookie-parser')
+
 const dbConnect = require('./model/database');
 const todo =require('./model/todoSchema')
 
-const routes=require('./controller/crudRoutes')
+const routes=require('./routes/crudRoutes')
+const authRoutes=require('./routes/authRoute')
 
+app.use(cookies());
 const cors = require('cors');
-app.use(cors())
+app.use(cors({origin:true,credentials:true}))
 
 app.use(express.json());
-dbConnect.mongdb();
+app.use(express.urlencoded({extended:false}))
 app.use('/user',routes)
-app.post('/task',async(req,res)=>{
-    const id=new mongodb.ObjectId(req.body.id)
-    const data =await todo.findById({_id:id})
-    res.json(data)
-})
 
+
+
+app.use('/auth',authRoutes)
 
 
 app.listen(3001,()=>console.log(`server is live on http://localhost:3001`))

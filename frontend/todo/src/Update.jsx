@@ -13,7 +13,8 @@ const Update = ({selectedId})=>{
 
    
    
-    const UpdateValue=()=>{
+    const UpdateValue=(e)=>{
+        e.preventDefault();
         console.log(status)
         axios.put('http://localhost:3001/user',{
             id:selectedId,
