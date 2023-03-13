@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function Login() {
       console.log(res.data);
       navigate("/todo");
     } else {
-      navigate("/");
+      navigate("/login");
     }
     console.log(`email ${mailId} password: ${password}`);
   };
@@ -33,11 +33,12 @@ function Login() {
         <input
           type="password"
           placeholder="password"
+          required
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Login</button>
       </form>
-      {/* <Link to="Signup">Signup</Link> */}
+      <Link to="/">Signup</Link>
     </div>
   );
 }

@@ -8,14 +8,15 @@ const Todo = () => {
     <React.Fragment>
 
       <div>
+        Todo
       <Link to="/login">login</Link>
       <br />
       <Link to="/">Signup</Link>
+      <br />
 
-        <Retrieve />
-        Todo
-        <br />
         <Create />
+        <br />
+        <Retrieve />
       </div>
     </React.Fragment>
   );

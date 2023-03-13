@@ -1,19 +1,27 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [mailId, setMailId] = useState("");
   const [password, setPassword] = useState("");
-  const Register = (e) => {
+  const navigate= useNavigate();
+  const Register = async(e) => {
     e.preventDefault();
     axios.defaults.withCredentials = true;
 
 
-    axios.post("http://localhost:3001/auth/signup", {
+    const res=await axios.post("http://localhost:3001/auth/signup", {
       mail_id: mailId,
       password: password,
     });
+    if (res.data === "Auth Successful") {
+      console.log(res.data);
+      navigate("/todo");
+    } else {
+      console.log(res.data)
+      // navigate("/login");
+    }
     console.log(`email: ${mailId} password: ${password}`)
   };
   return (
@@ -28,6 +36,7 @@ function Signup() {
         <input
           type="password"
           placeholder="password"
+          required
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Register</button>

@@ -6,7 +6,7 @@ const authSchema =  mongoose.Schema({
     email:{
         type:String,
         required:[true,'email is required'],
-        uninque:true,
+        unique:true,
         lowercase:true,
         validator:[isEmail,`email doesn't exist`]
     },

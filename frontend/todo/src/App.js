@@ -13,9 +13,9 @@ import axios from "axios";
 
 
 function App() {
-  useEffect(() => {
-    axios.defaults.withCredentials = true;
-  }, [])
+  axios.defaults.withCredentials = true;
+  // useEffect(() => {
+  // }, [])
   
   return (
     

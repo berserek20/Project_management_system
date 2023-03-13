@@ -4,8 +4,8 @@ const dotenv=require('dotenv')
 dotenv.config();
 const secretMessage= process.env.secretMessage;
 const routesCheck=(req,res,next)=>{
-    console.log(req);
-    console.log(req.cookies);
+    // console.log(req);
+    // console.log(req.cookies);
     
     if(req.cookies && req.cookies.jwt){
         const token=req.cookies.jwt;
