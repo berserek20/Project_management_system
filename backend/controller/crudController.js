@@ -1,13 +1,30 @@
 const todo = require('../model/todoSchema')
 const mongodb = require('mongodb')
-
+const { tdb } = require('../model/trackSchema')
 
 module.exports.docfetch=async (req, res) => {
-    const data = await todo.find()
-    console.log("data is retrieved successfully");
-    res.send(data)
+    // findById
+    const arr =[];
+    const taskObject= await tdb.find({userId:res.locals.userId})
+    taskObject[0].space.forEach((e)=>{
+        arr.push(e.spaceId.trim());
+    })
+    console.log(`docfetch:${taskObject[0].space} taskId:${arr} `,Array.isArray(arr))
+    
+
+
+    const data = await todo.find({_id:{$in: arr }})
+    // console.log(`fetch: ${data}`);
+     res.send(data)
 
 }
+
+// module.exports.docfetch=async (req, res) => {
+//     const data = await todo.find()
+//     console.log("data is retrieved successfully");
+//     res.send(data)
+
+// }
 
 module.exports.docCreate=(req, res) => {
     console.log(req.body.taskDes);
@@ -22,15 +39,21 @@ module.exports.docCreate=(req, res) => {
     res.send({ data: "user can succefully enter new data" })
 }
 
-module.exports.docDelete=(req, res) => {
-    const id = new mongodb.ObjectId(req.body.id)
-    todo.findByIdAndRemove({ _id: id }).then((res) => {
-
-        res.send("data is successfully deleted")
-    }
-    ).catch((err) => {
-        console.log(err)
+module.exports.docDelete=async(req, res) => {
+    console.log(`crudController id ${res.locals.userId}`)
+    const taskObject= await tdb.find({ userId: res.locals.userId } );
+    const selectedSpace = taskObject[0].space.filter((e)=>{
+        return e.spaceId.trim() == req.body.id
     })
+    console.log(` spaceId ${selectedSpace}  role: ${selectedSpace[0].role}`,Array.isArray(selectedSpace))
+    // const id = new mongodb.ObjectId(req.body.id)
+    // todo.findByIdAndRemove({ _id: id }).then((res) => {
+
+    //     res.send("data is successfully deleted")
+    // }
+    // ).catch((err) => {
+    //     console.log(err)
+    // })
 }
 
 module.exports.itemUpdate=(req, res) => {
@@ -78,6 +101,6 @@ module.exports.addItem=async(req,res)=>{
             }
         }
     })
-    console.log(id)
-    console.log(data)
+    console.log(`update item: id : ${id}`)
+    console.log(`${data}`)
 }

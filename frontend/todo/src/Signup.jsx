@@ -8,9 +8,6 @@ function Signup() {
   const navigate= useNavigate();
   const Register = async(e) => {
     e.preventDefault();
-    axios.defaults.withCredentials = true;
-
-
     const res=await axios.post("http://localhost:3001/auth/signup", {
       mail_id: mailId,
       password: password,
@@ -18,8 +15,9 @@ function Signup() {
     if (res.data === "Auth Successful") {
       console.log(res.data);
       navigate("/todo");
-    } else {
-      console.log(res.data)
+    } 
+    else {
+      console.log(res)
       // navigate("/login");
     }
     console.log(`email: ${mailId} password: ${password}`)
