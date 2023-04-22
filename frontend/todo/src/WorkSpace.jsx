@@ -1,7 +1,7 @@
 import React from "react";
-import Retrieve from "./RetrieveAndDelete";
 import Create from "./Create";
 import { Link } from "react-router-dom";
+import Retrieve from "./RetrieveAndDelete";
 
 const Todo = () => {
   return (

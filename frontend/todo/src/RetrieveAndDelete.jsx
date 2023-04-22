@@ -41,16 +41,18 @@ const Retrieve = ()=>{
     //     console.log(taskLi)
     // }
 
-    const remove=(value)=>{
+    const remove=async(value)=>{
         console.log(value._id)
         // _id: JSON.stringify(value._id)
-        axios.delete('http://localhost:3001/user',{data:{id:value._id}}).then((err)=>{
-            console.log(err);
-        }
-        )
+        const val = await axios.delete('http://localhost:3001/user',{data:{id:value._id}})
+        // .then((err)=>{
+        //     console.log(err);
+        // }
+        // )
+        console.log(val);
+        alert(val.data);
     
-
-}
+    }
         const cart =list.map((value)=>{
             return  (
                 <div className='fetch'  key={value._id}>
@@ -95,5 +97,4 @@ const Retrieve = ()=>{
         </React.Fragment>
     )
 }
-
 export default Retrieve;

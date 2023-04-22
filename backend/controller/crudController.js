@@ -40,45 +40,82 @@ module.exports.docCreate=(req, res) => {
 }
 
 module.exports.docDelete=async(req, res) => {
-    console.log(`crudController id ${res.locals.userId}`)
+    // console.log(`crudController id ${res.locals.userId}`)
     const taskObject= await tdb.find({ userId: res.locals.userId } );
     const selectedSpace = taskObject[0].space.filter((e)=>{
         return e.spaceId.trim() == req.body.id
     })
-    console.log(` spaceId ${selectedSpace}  role: ${selectedSpace[0].role}`,Array.isArray(selectedSpace))
-    // const id = new mongodb.ObjectId(req.body.id)
-    // todo.findByIdAndRemove({ _id: id }).then((res) => {
+    const role = selectedSpace[0].role
+    console.log(` spaceId ${selectedSpace}  role: ${role}`,Array.isArray(selectedSpace))
+    console.log(`selectedSpace.Id=>`,selectedSpace[0]._id)
 
-    //     res.send("data is successfully deleted")
-    // }
-    // ).catch((err) => {
-    //     console.log(err)
-    // })
+    if(role=="owner"){
+        const userSpaceArray= await tdb.find();// finding all user and their spaces
+        const space = [];
+        userSpaceArray.forEach(e => {
+            e.space.forEach(element =>{
+                space.push(element)
+    
+            })
+        });// pick out space and their id of all the user
+        const spacearrayIds= space.filter((e)=>{
+            return e.spaceId == req.body.id
+        }
+    
+        )// filtering out spaces whose id is same as the 
+        console.log("space",space,"userSpaceArray",spacearrayIds)
+        // it removes the spaceId and userRole (space object ) from track collection  
+        const clearSpace = await tdb.findByIdAndRemove({_id:{$in:spacearrayIds}})
+        const id = new mongodb.ObjectId(req.body.id)
+        // it delete the whole space with all the task from todo collection
+        const removeSpace = await todo.findByIdAndRemove({ _id: id })
+
+        console.log(`remove`,removeSpace,`selectedSpace`,selectedSpace[0]._id)
+        // .then((res) => {
+    
+            res.send("data is successfully deleted")
+        // }
+        // )
+        // .catch((err) => {
+        //     console.log(err)
+        // })
+    
+    }
+    else{
+        res.send("user doesn't have permission to delete the space")
+    }
 }
 
-module.exports.itemUpdate=(req, res) => {
+module.exports.itemUpdate= async (req, res) => {
+    const taskObject= await tdb.find({ userId: res.locals.userId } );
+    const selectedSpace = taskObject[0].space.filter((e)=>{
+        return e.spaceId.trim() == req.body.id
+    })
+    const role = selectedSpace[0].role
+    console.log(` spaceId ${selectedSpace}  role: ${role}`,Array.isArray(selectedSpace))
+    console.log(`selectedSpace.Id=>`,selectedSpace[0]._id)
     // console.log(`PUT ID ${id}`)
     console.log(req.body)
 
-    const objectId = new mongodb.ObjectId(req.body.id);
+    // const objectId = new mongodb.ObjectId(req.body.id);
 
-    todo.updateOne(
-        { "task._id": objectId },
-        {
-            "$set": { "task.$.taskDes": req.body.taskDes,
-            "array.$.Status": req.body.Status },
-            // "$set": { }
-        },
-        null,
-        (err,res)=>{
-            if(err){
-                console.log("Error",err);
-            }
-            else{
-                console.log("Response",res);
-            }
-        }
-    )
+    // todo.updateOne(
+    //     { "task._id": objectId },
+    //     {
+    //         "$set": { "task.$.taskDes": req.body.taskDes,
+    //         "array.$.Status": req.body.Status },
+    //         // "$set": { }
+    //     },
+    //     null,
+    //     (err,res)=>{
+    //         if(err){
+    //             console.log("Error",err);
+    //         }
+    //         else{
+    //             console.log("Response",res);
+    //         }
+    //     }
+    // )
 
     
     res.send({ data: "tell me what to update" })

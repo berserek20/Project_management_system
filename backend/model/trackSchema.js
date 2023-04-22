@@ -17,7 +17,7 @@ const trackSchema =  mongoose.Schema({
             enum: ["owner","contributor","client"]
         }
     }],
-    task: [{
+    taskAssigned: [{
         taskId: String,
     }]
         
