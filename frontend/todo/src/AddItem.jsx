@@ -20,11 +20,12 @@ function AddItem({docId}) {
     });
   };
   return (
-    <div>AddItem
+    <div>
+      <h3>Add Items</h3>
 
-        Post request
-        doc_id:{docId}
-        <br />
+        
+        
+        
         <form onSubmit={SubmitValue}>
           
 

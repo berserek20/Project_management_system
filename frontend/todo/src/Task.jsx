@@ -4,6 +4,7 @@ import axios from 'axios';
 import Update from './Update'
 import AddItem from './AddItem';
 import Api from './create-subparts/Api';
+import './Task.css';
 
 function Task() {
   const {_id}= useParams();
@@ -24,7 +25,7 @@ function Task() {
   },[])
   const items = tasks.map((e)=>{
     return(
-      <div key={e._id} >
+      <div className="item" key={e._id} style={{borderColor: itemId === e._id ? "blue":"white"}}>
         id:{e._id}
         <br />
         description:{e.taskDes } 
@@ -33,7 +34,7 @@ function Task() {
         Status:{e.Status.toString() }
         <br />
 
-        <button onClick={()=>{refData(e)}}>Reference</button>
+        <button onClick={()=>{refData(e)}}>Select</button>
       </div>
     )
   })
@@ -43,13 +44,24 @@ function Task() {
   }
 
   return (
-    <div>
-      {/* {info.title} */}
-    {items}
+    <div className="container">
+      <h1>Project:{_id}</h1>
+      <br />
     
-    <Update spaceId={_id} selectedId={itemId}/>
-    <AddItem docId={_id}/>
-    <Api docId={_id}/>
+      <div className='taskContainer'>
+        
+        {/* {info.title} */}
+      <div className="taskContainer1">
+        <Update  spaceId={_id} selectedId={itemId}/>
+        <AddItem  docId={_id}/>
+
+          <ul>
+
+            {items}
+          </ul>
+      </div>
+        <Api  docId={_id}/>
+      </div>
     </div>
   )
 }

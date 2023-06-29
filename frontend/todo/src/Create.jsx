@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
-import axios from "axios";
+import { Link } from "react-router-dom";
 
+import axios from "axios";
+import './Create.css'
 const Create = () => {
   const [item, setItem] = useState("");
   const [status, setStatus] = useState(true);
@@ -22,8 +24,8 @@ const Create = () => {
 
   return (
     <React.Fragment>
-      <div>
-        Post request
+      <div className="createContainer">
+        <h3>Create Project</h3>
         <form onSubmit={SubmitValue}>
           <input
             type="text"
@@ -54,6 +56,9 @@ const Create = () => {
 
           <button type="submit">Add Item</button>
         </form>
+          <Link to="/login">login</Link>
+              <br />
+              <Link to="/">Signup</Link>
       </div>
     </React.Fragment>
   );

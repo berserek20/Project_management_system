@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import './Signup.css';
 
 function Signup() {
   const [mailId, setMailId] = useState("");
@@ -24,8 +25,8 @@ function Signup() {
   };
   return (
     <div>
-      <h1>Registration</h1>
       <div className="container">
+      <h1>Registration</h1>
 
         <form onSubmit={Register}>
           
@@ -34,17 +35,20 @@ function Signup() {
             placeholder="email"
             onChange={(e) => setMailId(e.target.value)}
           />
+          <br />
           <input
             type="password"
             placeholder="password"
             required
             onChange={(e) => setPassword(e.target.value)}
           />
+          <br />
           <button type="submit">Register</button>
         </form>
+        <br />
+        <Link to="login">login</Link>
       </div>
 
-      <Link to="login">login</Link>
     </div>
   );
 }

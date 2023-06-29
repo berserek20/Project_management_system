@@ -1,0 +1,23 @@
+.taskContainer{
+    height: 80vh;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    /* overflow: auto; */
+}
+.taskContainer1{
+    border: 2px solid gray;
+    display: flex;
+    flex-direction: row;
+}
+ul{
+    margin:10px;
+    border: 2px solid gray;
+
+}
+.item{
+    border: 2px solid;
+}
+.taskfeatures{
+    margin: 10px;
+}

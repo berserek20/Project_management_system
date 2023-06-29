@@ -12,16 +12,7 @@ const Retrieve = ()=>{
     const inputRef=useRef();
     const dRef=useRef();
 
-    // function SetValue(e){
-    //     e.preventdefalut();
-        
-    //     setItem(inputRef.current.value);
-    // }
-    // function SetValue(e){
-    //     e.preventdefalut();
-
-    //     setStatus(inputRef.current.value);
-    // }
+    
     const fetchData= async ()=>{
         const res =  await axios.get('http://localhost:3001/user')
         
@@ -32,14 +23,7 @@ const Retrieve = ()=>{
         
     }
    
-    // const fetchTask=(value)=>{
-    //     const taskLi=value.task.map((e)=>{
-    //         return(e.taskDes)
-    //     })
-        
-    //     setTask(taskLi);
-    //     console.log(taskLi)
-    // }
+    
 
     const remove=async(value)=>{
         console.log(value._id)
@@ -70,27 +54,23 @@ const Retrieve = ()=>{
             )
     
         })
-        // const todosList = list.map((e)=>{
-        //     return(<div>{e.toString()}</div>)
-        // })
-   
         
     
     return(
         <React.Fragment>
-            <div>
-                GET REQUEST
+            <div className='retrieveContainer'>
+                <h3>Fetch Projects</h3>
                
                 {/* {Get Request} */}
-                <button onClick={fetchData}>fetch</button>
+                <button className='fetchbtn' onClick={fetchData}>fetch</button>
 
                 <br />
                     {/* <h3>itemName    itemId</h3> */}
-            <ul>
+                    <ul>
 
-                {cart}
-            </ul>
-            {/* <TodoList list={task}/> */}
+                        {cart}
+                    </ul>
+                    {/* <TodoList list={task}/> */}
 
 
             </div>

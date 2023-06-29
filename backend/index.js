@@ -8,6 +8,7 @@ const cookies= require('cookie-parser')
 
 const routes=require('./routes/crudRoutes')
 const authRoutes=require('./routes/authRoute')
+const extroutes = require('./routes/extRoutes')
 
 app.use(cookies());
 const cors = require('cors');
@@ -18,7 +19,7 @@ app.use(express.urlencoded({extended:false}))
 app.use('/user',routes)
 
 
-
+app.use('/ext',extroutes)
 app.use('/auth',authRoutes)
 
 

@@ -34,8 +34,7 @@
     "host_permissions": [
       "https://example.com/*",
       "http://example.com/*",
-
-            "chrome-extension://beomoclkfongpaghaglgpbcenepocbob/popup.html"
+      "http://localhost/*"
 
     ]
     

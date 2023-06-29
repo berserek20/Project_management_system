@@ -4,12 +4,9 @@ import axios from 'axios'
 const Update = ({spaceId,selectedId})=>{
     const [item,setItem]=useState("");
     const [status,setStatus]=useState(false);
-    const [title,setTitle]=useState("")
 
-    const [list,setList]=useState([]);
     // const [currId,setCurrId]=useState("");
     const inputRef=useRef();
-    const dRef=useRef();
 
    
    
@@ -31,7 +28,7 @@ const Update = ({spaceId,selectedId})=>{
     return(
         <React.Fragment>
             <div>
-                Todo
+                <h3>update</h3>
             {/* {update request} */}
                 <form onSubmit={UpdateValue}>
                    

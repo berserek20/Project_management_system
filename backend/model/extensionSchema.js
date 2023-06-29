@@ -1,21 +1,18 @@
-const mongoose = require('mongoose');
-const {extdb}=require('./database');
+// const mongoose = require('mongoose');
+// const {extdb}=require('./database');
 
-const extSchema =  mongoose.Schema(
-    {
-        url:{
-            type:String,
-            required:[true,'url is required'],
-            unique:true,
+// const extSchema =  mongoose.Schema(
+//     {
+//         url:{
+//             type:String
            
-        },
-        content: {
-            type:Array,
-            minlength:[6,'password is to short'],
-        }
+//         },
+//         content: {
+//             type:Array
+//         }
 
 
-    }
+//     }
 
-   )
-module.exports = extdb.model("auths",extSchema);
+//    )
+// module.exports = extdb.model("auths",extSchema);

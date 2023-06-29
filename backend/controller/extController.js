@@ -5,7 +5,7 @@ const { tdb } = require('../model/trackSchema')
 module.exports.extdocfetch=async (req, res) => {
     // findById
     const arr =[];
-    const taskObject= await tdb.find({userId:res.locals.userId})
+    const taskObject= await tdb.find({userId:"6434c9192f04f26aa3b06c93"})
     taskObject[0].space.forEach((e)=>{
         arr.push(e.spaceId.trim());
     })
@@ -14,19 +14,20 @@ module.exports.extdocfetch=async (req, res) => {
 
 
     const data = await todo.find({_id:{$in: arr }})
-    // console.log(`fetch: ${data}`);
+    console.log(`fetch: ${data}`);
      res.send(data)
 
 }
 
 module.exports.extaddItem=async(req,res)=>{
     const id=new mongodb.ObjectId(req.body.id)
+    console.log("request",req)
     const data=await todo.updateOne({_id:id},{
         $push:{
-            task:{
+            contentBlock:{
                 
-                taskDes:req.body.taskDes,
-                Status:req.body.Status
+                url:req.body.url,
+                content:req.body.content
             }
         }
     })

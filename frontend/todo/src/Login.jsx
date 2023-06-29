@@ -23,22 +23,28 @@ function Login() {
   };
   return (
     <div>
-      <h1>Login</h1>
-      <form onSubmit={signIn}>
-        <input
-          type="text"
-          placeholder="mail id"
-          onChange={(e) => setMailId(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
-      <Link to="/">Signup</Link>
+      <div className="container">
+
+        <h1>Login</h1>
+        <form onSubmit={signIn}>
+          <input
+            type="text"
+            placeholder="mail id"
+            onChange={(e) => setMailId(e.target.value)}
+          />
+          <br />
+          <input
+            type="password"
+            placeholder="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <br />
+          <button type="submit">Login</button>
+        </form>
+        <br />
+        <Link to="/">Signup</Link>
+      </div>
     </div>
   );
 }

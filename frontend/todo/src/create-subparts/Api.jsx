@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
-// import { json } from 'react-router-dom';
+import './Api.css'
 
 function Api({docId}) {
   const [resName, setResName] = useState('');
@@ -60,7 +60,9 @@ function Api({docId}) {
   };
 
   return (
-    <div>
+    <div className='apiContainer'>
+      <div className="apicontainer1">
+
       <form onSubmit={handleFormSubmit}>
         <label>
           Resource Name:
@@ -80,7 +82,12 @@ function Api({docId}) {
         </label>
         <button type="submit">Search</button>
       </form>
-      {abs}
+      
+      </div>
+
+      <div className="apiContainer2">
+
+    <ul style={{borderColor: results === [] ? "white" : "gray"}}>
 
       {results.map((result, index) => (
         <div key={index}>
@@ -91,6 +98,11 @@ function Api({docId}) {
 
         </div>
       ))}
+    </ul>
+    </div>
+
+    {abs}
+
     </div>
   );
 }

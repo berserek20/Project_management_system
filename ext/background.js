@@ -1,32 +1,20 @@
-// // Retrieve the CSRF token from the cookie
-// function getCookie(name) {
-//   let cookieValue = null;
-//   if (document.cookie && document.cookie !== '') {
-//       const cookies = document.cookie.split(';');
-//       for (let i = 0; i < cookies.length; i++) {
-//           const cookie = cookies[i].trim();
-//           // Extract the CSRF token
-//           if (cookie.substring(0, name.length + 1) === (name + '=')) {
-//               cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-//               break;
-//           }
-//       }
-//   }
-//   return cookieValue;
-// }
+
 // background script
 console.log("Second");
 let copycontent = {};
+let id ;
 
-// chrome.tabs.onActivated.addListener((tab)=>{
-//     console.log(tab.tabId.documentElement);
+// In the background script
 
-// }
-  // );
   chrome.runtime.onMessage.addListener(async(message, sender, sendResponse) => {
+    const msg = message;
+        if(message.value){
+          console.log("Received message:", message,"sender:",sender);
+          console.log(message.value)
+          id=message.value;
+        }
         // Process the message
-        const msg = message;
-        if(msg.message[0]=='content.js'){
+        else if(message.msg){
           console.log("Received message from content:", message,"sender:",sender);
           // if (url in copycontent == true){
             
@@ -35,24 +23,19 @@ let copycontent = {};
           // }
           // else{
             // copycontent[url] = [];
+            copycontent.id=id;
             copycontent.url= sender.url;
-            copycontent.content=msg.message[1];
+            copycontent.content=message.msg[1];
+
 
           // }
-          console.log(copycontent)
-        }
-        else{
-          console.log("Received message:", message,"sender:",sender);
-
-        }
-        // const csrfToken = getCookie('csrftoken'); // Get the CSRF token
-
-         fetch('http://localhost:3000',{
+          console.log(copycontent);
+        
+       
+         fetch('http://localhost:3001/ext',{
           method: "POST",
           headers:{
-            "Content-Type":"application/json",
-            // "X-CSRFToken": csrfToken // Include the CSRF token in the headers
-
+            "Content-Type":"application/json"
           },
 
           body: JSON.stringify(copycontent)
@@ -61,23 +44,4 @@ let copycontent = {};
           console.log(res);
         })
         sendResponse({message: JSON.stringify(copycontent)})
-        // console.log(text)
-      });
-
-
-// background.js
-chrome.action.onClicked.addListener((tab) => {
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    function: setPageCookie,
-  });
-});
-
-
-
-
-
-
-
-
-  
+      }       });

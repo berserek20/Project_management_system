@@ -26,7 +26,6 @@ router.post('/task',routesCheck,fetchItems);
 
 router.put('/item',routesCheck,addItem);
 
-router.get('/',routesCheck, extdocfetch);
 
 
 
