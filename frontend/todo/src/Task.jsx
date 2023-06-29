@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import Update from './Update'
 import AddItem from './AddItem';
+import Api from './create-subparts/Api';
 
 function Task() {
   const {_id}= useParams();
@@ -23,7 +24,7 @@ function Task() {
   },[])
   const items = tasks.map((e)=>{
     return(
-      <div key={e._id}>
+      <div key={e._id} >
         id:{e._id}
         <br />
         description:{e.taskDes } 
@@ -45,8 +46,11 @@ function Task() {
     <div>
       {/* {info.title} */}
     {items}
-    <Update selectedId={itemId}/>
-    <AddItem docId={_id}/></div>
+    
+    <Update spaceId={_id} selectedId={itemId}/>
+    <AddItem docId={_id}/>
+    <Api docId={_id}/>
+    </div>
   )
 }
 

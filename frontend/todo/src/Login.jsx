@@ -14,12 +14,12 @@ function Login() {
       password: password,
     });
     if (res.data === "Auth Successful") {
-      console.log(res.data);
+      console.log(res);
       navigate("/todo");
     } else {
       navigate("/login");
     }
-    console.log(`email ${mailId} password: ${password}`);
+    console.log(`email ${mailId} password: ${password}`);//remove it
   };
   return (
     <div>

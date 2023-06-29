@@ -25,20 +25,24 @@ function Signup() {
   return (
     <div>
       <h1>Registration</h1>
-      <form onSubmit={Register}>
-        <input
-          type="text"
-          placeholder="email"
-          onChange={(e) => setMailId(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Register</button>
-      </form>
+      <div className="container">
+
+        <form onSubmit={Register}>
+          
+          <input
+            type="text"
+            placeholder="email"
+            onChange={(e) => setMailId(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit">Register</button>
+        </form>
+      </div>
 
       <Link to="login">login</Link>
     </div>

@@ -17,8 +17,8 @@ function handleErr(res,err){
 module.exports.signup =async(req,res)=>{
     const mail=req.body.mail_id;
     const salt =await bcrypt.genSalt();
-    console.log(`AuthController Password:${req.body.password}`)
-    if(req.body.password.length+1>6){
+    console.log(`AuthController [note:implement regex]Password:${req.body.password}`)
+    if(req.body.password.length+1>6){// implement regex ^([a-z0-9])$/i and add some constraint for mail id as well
 
         password=await bcrypt.hash(req.body.password,salt);
         try{
@@ -54,13 +54,14 @@ module.exports.login =async(req,res)=>{
 
         const user = await authdb.findOne({ email: mail });
         if (user) {
-            console.log(`user:${user} password:${user.password}`);
+            console.log(`Authcontroller: [note:implement regex] user:${user} password:${user.password}`);
           const compare = await bcrypt.compare(password, user.password);
           const token=createToken(user._id);
-            console.log(`token:${token}`)
-            res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000})
-          if (compare) {
-            res.send("Auth Successful");
+          console.log(`token:${token}`)
+          res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000})
+            if (compare) {
+                // res.send(token);
+                res.send("Auth Successful");
           } else {
             res.send("Wrong username or password.");
           }

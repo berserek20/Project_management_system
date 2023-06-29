@@ -16,7 +16,9 @@ const Todo = () => {
 
         <Create />
         <br />
+
         <Retrieve />
+        Retrieved
       </div>
     </React.Fragment>
   );

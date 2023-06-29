@@ -1,7 +1,7 @@
 import React,{ useState,useRef } from 'react'
 import axios from 'axios'
 
-const Update = ({selectedId})=>{
+const Update = ({spaceId,selectedId})=>{
     const [item,setItem]=useState("");
     const [status,setStatus]=useState(false);
     const [title,setTitle]=useState("")
@@ -14,8 +14,10 @@ const Update = ({selectedId})=>{
    
    
     const UpdateValue=(e)=>{
-        console.log(status)
+        // e.preventDefault();
+        // console.log(e)
         axios.put('http://localhost:3001/user',{
+            spaceId:spaceId,
             id:selectedId,
             taskDes:item,
             Status: status

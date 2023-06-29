@@ -2,7 +2,7 @@ import React from 'react'
 
 function TodoList(props) {
   return (
-    <div>{props.list}</div>
+      <div>{props.list}</div>
   )
 }
 

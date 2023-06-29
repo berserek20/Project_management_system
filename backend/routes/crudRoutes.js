@@ -7,7 +7,8 @@ const { docfetch,docCreate,docDelete,itemUpdate, fetchItems, addItem } = require
 const app = express()
 app.use(cors())
 app.use(express.json())
-const {routesCheck}=require('../controller/middleware')
+const {routesCheck}=require('../controller/middleware');
+const { extdocfetch } = require('../controller/extController');
 
 app.use(cookies());
 router.get('/',routesCheck, docfetch);
@@ -23,6 +24,10 @@ router.delete('/',routesCheck, docDelete);
 
 router.post('/task',routesCheck,fetchItems);
 
-router.put('/item',routesCheck,addItem)
+router.put('/item',routesCheck,addItem);
+
+router.get('/',routesCheck, extdocfetch);
+
+
 
 module.exports = router;

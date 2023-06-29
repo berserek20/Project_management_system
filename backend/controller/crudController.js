@@ -19,12 +19,7 @@ module.exports.docfetch=async (req, res) => {
 
 }
 
-// module.exports.docfetch=async (req, res) => {
-//     const data = await todo.find()
-//     console.log("data is retrieved successfully");
-//     res.send(data)
 
-// }
 
 module.exports.docCreate=(req, res) => {
     console.log(req.body.taskDes);
@@ -87,10 +82,13 @@ module.exports.docDelete=async(req, res) => {
 }
 
 module.exports.itemUpdate= async (req, res) => {
+    // const space = await todo.find({_id: req.body.id})
+    console.log(`crudcontroller itemUpdate task_id:${req.body.id}  `)//space:${space}
     const taskObject= await tdb.find({ userId: res.locals.userId } );
+
     const selectedSpace = taskObject[0].space.filter((e)=>{
-        return e.spaceId.trim() == req.body.id
-    })
+        return e.spaceId.trim() == req.body.id;
+    }) 
     const role = selectedSpace[0].role
     console.log(` spaceId ${selectedSpace}  role: ${role}`,Array.isArray(selectedSpace))
     console.log(`selectedSpace.Id=>`,selectedSpace[0]._id)

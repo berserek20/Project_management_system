@@ -8,6 +8,8 @@ function AddItem({docId}) {
   const inputRef = useRef();
   const dRef = useRef();
 
+  
+
   const SubmitValue = (e) => {
     e.preventDefault();
     console.log(docId);
@@ -33,6 +35,8 @@ function AddItem({docId}) {
             placeholder="Item Entry"
             ref={inputRef}
             onChange={(e) => setItem(e.target.value)}
+            // onChange={(e) => setItem(payload)}
+
           />
 
           <input
@@ -50,4 +54,4 @@ function AddItem({docId}) {
   )
 }
 
-export default AddItem
+export default AddItem;
