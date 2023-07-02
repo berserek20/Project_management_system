@@ -16,12 +16,13 @@ const trackSchema =  mongoose.Schema({
             required : true,
             enum: ["owner","contributor","client"]
         }
-    }],
-    taskAssigned: [
-        {        
-            taskId: String
-        }    
-    ]
+    }]
+    // ,
+    // taskAssigned: [
+    //     {        
+    //         taskId: String
+    //     }    
+    // ]
         
 })
 

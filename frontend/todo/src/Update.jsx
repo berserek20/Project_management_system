@@ -31,15 +31,8 @@ const Update = ({spaceId,selectedId})=>{
                 <h3>update</h3>
             {/* {update request} */}
                 <form onSubmit={UpdateValue}>
-                   
-                {/* <input 
-                    type="text"
-                    name="title-entry"
-                    value={title}    
-                    placeholder="Title Entry"
-                    ref={inputRef}         
-                    onChange={(e)=>setTitle(e.target.value)}/> */}
-
+                <p>                     Select Item to Update
+        </p>
                     <input 
                     type="text"
                     name="item-entry"

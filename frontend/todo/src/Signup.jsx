@@ -15,6 +15,7 @@ function Signup() {
     });
     if (res.data === "Auth Successful") {
       console.log(res.data);
+      alert(`welcome ${mailId}`)
       navigate("/todo");
     } 
     else {

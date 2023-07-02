@@ -1,17 +1,17 @@
-import React,{ useState,useRef } from 'react'
+import React,{ useState } from 'react'
 import axios from 'axios'
 import './Retrieve.css'
-import TodoList from './TodoList';
+// import TodoList from './TodoList';
 import {Link, useParams  } from 'react-router-dom'; 
 
 const Retrieve = ()=>{
 
     const [list,setList]=useState([]);
-    const [_id,setId]=useState("");
-    const [task,setTask]=useState([]);
-    const inputRef=useRef();
-    const dRef=useRef();
-
+    // const [_id,setId]=useState("");
+    // const [task,setTask]=useState([]);
+    // const inputRef=useRef();
+    // const dRef=useRef();
+   
     
     const fetchData= async ()=>{
         const res =  await axios.get('http://localhost:3001/user')
@@ -34,8 +34,7 @@ const Retrieve = ()=>{
         // }
         // )
         console.log(val);
-        alert(val.data);
-    
+        alert(val.data)
     }
         const cart =list.map((value)=>{
             return  (
@@ -65,12 +64,10 @@ const Retrieve = ()=>{
                 <button className='fetchbtn' onClick={fetchData}>fetch</button>
 
                 <br />
-                    {/* <h3>itemName    itemId</h3> */}
                     <ul>
 
                         {cart}
                     </ul>
-                    {/* <TodoList list={task}/> */}
 
 
             </div>

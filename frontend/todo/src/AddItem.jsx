@@ -10,14 +10,16 @@ function AddItem({docId}) {
 
   
 
-  const SubmitValue = (e) => {
+  const SubmitValue = async(e) => {
     e.preventDefault();
     console.log(docId);
-    axios.put("http://localhost:3001/user/item", {
+    const resp =await axios.put("http://localhost:3001/user/item", {
         id:docId,
       taskDes: item,
       Status: status,
     });
+    console.log(resp)
+    alert(resp.data);
   };
   return (
     <div>
