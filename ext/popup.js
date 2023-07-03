@@ -27,7 +27,11 @@ console.log("first")
 //     });
 //   }
 // )
-let token;
+let tokn={};
+if(tokn.token){
+  document.getElementById('credentials').style.display="none";
+  document.getElementById('workspaceList').style.display="block";
+}
 
 const login = document.getElementById('login');
 // document.addEventListener("DOMContentLoaded", function () {
@@ -45,9 +49,10 @@ login.addEventListener('click', async () => {
         },
         body: JSON.stringify({ mail_id:email,password:password})
       });
-        token = JSON.stringify(await res.text());
-        console.log(token)
-      if(token){
+      // console.log(await res.json(),res.token)
+        tokn = await res.json();
+        console.log(tokn.token)
+      if(tokn.token){
         document.getElementById('credentials').style.display="none";
         document.getElementById('workspaceList').style.display="block";
       }
@@ -64,7 +69,7 @@ workspaceList.addEventListener('click',
     const res =  await fetch('http://localhost:3001/user', {
             method: "GET",
             headers:{
-              Authorization:`Bearer ${token}`,
+              Authorization:`Bearer ${tokn.token}`,
                 credentials:'include'
             }
         });

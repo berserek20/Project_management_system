@@ -60,9 +60,9 @@ module.exports.login =async(req,res)=>{
           console.log(`token:${token}`)
           res.cookie('jwt',token,{httpOnly:true,maxAge:maxAge*1000})
             if (compare) {
-                // res.send(token);
                 // res.send("Auth Successful");
-                res.send(token);
+                res.send({token:token});
+
           } else {
             res.send("Wrong username or password.");
           }

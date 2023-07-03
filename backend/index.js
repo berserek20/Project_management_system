@@ -19,7 +19,7 @@ app.use(express.urlencoded({extended:false}))
 app.use('/user',routes)
 
 
-app.use('/ext',extroutes)
+// app.use('/ext',extroutes)
 app.use('/auth',authRoutes)
 
 

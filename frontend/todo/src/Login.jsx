@@ -13,7 +13,8 @@ function Login() {
       mail_id: mailId,
       password: password,
     });
-    if (res.data === "Auth Successful") {
+    console.log("token",await res.data.token)
+    if (res.data.token) {
       console.log(res);
       navigate("/todo");
     } else {

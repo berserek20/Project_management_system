@@ -1,23 +1,24 @@
-const express = require('express');
-const router = express.Router();
-const cors = require('cors')
-const app = express()
-const {extdocfetch, extaddItem}=require('../controller/extController.js')
+// const express = require('express');
+// const router = express.Router();
+// const cors = require('cors')
+// const app = express()
+// const {extdocfetch, extaddItem, extlogin}=require('../controller/extController.js');
+// const { routesCheck } = require('../controller/middleware.js');
 
-app.use(cors())
-app.use(express.json())
+// app.use(cors())
+// app.use(express.json())
 
-
-router.get('/', extdocfetch);
-router.post('/', extaddItem);
-
-
-
-
-
-// router.post('/login', auth.login);
+// // router.post('/login',extlogin)
+// // router.get('/', extdocfetch);
+// // router.post('/ext', extaddItem);
 
 
 
 
-module.exports = router;
+
+// // router.post('/login', auth.login);
+
+
+
+
+// module.exports = router;
