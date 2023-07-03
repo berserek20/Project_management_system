@@ -3,7 +3,7 @@ console.log(" hello my name is Sagar" );
 
 // chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 //   if (message === "backgroundReady") {
-    document.addEventListener("copy", async function () {
+    document.addEventListener("copy", async ()=> {
       var arr =[];
       arr[0]='content.js'
       
@@ -14,7 +14,7 @@ console.log(" hello my name is Sagar" );
       
           // Send a message to the background script
           chrome.runtime.sendMessage({ msg: arr },(res)=>{
-                const resp = res.message;
+                const resp = res;
                 console.log(`ARRAY :- ${JSON.stringify(resp)}`)
           }
           )

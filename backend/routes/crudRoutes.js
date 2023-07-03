@@ -8,15 +8,12 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 const {routesCheck}=require('../controller/middleware');
-const { extdocfetch } = require('../controller/extController');
+// const { extdocfetch } = require('../controller/extController');
 
 app.use(cookies());
 router.get('/',routesCheck, docfetch);
 
-
-
 router.put('/',routesCheck, itemUpdate);
-
 
 router.post('/',routesCheck, docCreate);
 
