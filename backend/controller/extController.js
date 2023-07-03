@@ -5,7 +5,7 @@ const { tdb } = require('../model/trackSchema')
 module.exports.extdocfetch=async (req, res) => {
     // findById
     const arr =[];
-    const taskObject= await tdb.find({userId:"6434c9192f04f26aa3b06c93"})
+    const taskObject= await tdb.find({userId: res.locals.userId})
     taskObject[0].space.forEach((e)=>{
         arr.push(e.spaceId.trim());
     })

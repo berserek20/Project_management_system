@@ -27,20 +27,33 @@ console.log("first")
 //     });
 //   }
 // )
+let token;
 
-
-const submit = document.getElementById('submit');
-document.addEventListener("DOMContentLoaded", function () {
-submit.addEventListener('click', async () => {
+const login = document.getElementById('login');
+// document.addEventListener("DOMContentLoaded", function () {
+login.addEventListener('click', async () => {
 
   
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-      // location.replace('./cextension.html')
-      document.getElementById('credentials').style.display="none";
-      document.getElementById('workspaceList').style.display="block";
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+    
+      console.log(email,password)
+      const res =  await fetch('http://localhost:3001/auth/login', {
+        method: "POST",
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body: JSON.stringify({ mail_id:email,password:password})
+      });
+        token = JSON.stringify(await res.text());
+        console.log(token)
+      if(token){
+        document.getElementById('credentials').style.display="none";
+        document.getElementById('workspaceList').style.display="block";
+      }
+          // location.replace('./cextension.html')
   });
-});
+// });
 const workspaceList = document.getElementById('workspaceList');
 
 workspaceList.addEventListener('click',
@@ -48,9 +61,14 @@ workspaceList.addEventListener('click',
     // Send a message to the background script
     //  chrome.runtime.sendMessage({ message: "Hello, kem cho!" });
     // const token = localStorage.getItem('token');
-    const res =  await fetch('http://localhost:3001/ext', {
-        method: "GET",
-      });
+    const res =  await fetch('http://localhost:3001/user', {
+            method: "GET",
+            headers:{
+              Authorization:`Bearer ${token}`,
+                credentials:'include'
+            }
+        });
+     
       const data=await res.json();
       console.log("res.text",data);     
       let arr=[];
@@ -79,6 +97,3 @@ workspaceList.addEventListener('click',
     // });
   }
 )
-// button.addEventListener('click',(e)=>{
-//   console.log(e.value)
-// })
